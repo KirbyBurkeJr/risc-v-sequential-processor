@@ -1,9 +1,9 @@
 
 # RISC-V 32-Bit Sequential Processor
 
-## Overview
-
 ![Processor diagram](https://github.com/KirbyBurkeJr/risc-v-sequential-processor/blob/main/doc/processor-diagram.png)
+
+## Overview
 
 This repository contains the Verilog design source and simulation files for a 32-bit sequential RISC-V processor. For more information about this project, visit the [RISC-V Sequential Processor](https://kirbyburkejr.com/projects/risc-v-sequential-processor) page on my portfolio site.
 
