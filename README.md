@@ -2,44 +2,47 @@
 # RISC-V 32-Bit Sequential Processor
 
 ## Overview
-This repository contains the design and simulation resources for a 32-bit sequential RISC-V processor -- developed with Vivado -- and a series of design schematics. For a high-level description of the processor development, visit the [RISC-V Single-Cycle Processor](https://kirbyburkejr.com/projects/verilog-risc-v-processor) page on my portfolio site.
+
+![Processor diagram](https://github.com/KirbyBurkeJr/risc-v-sequential-processor/blob/main/doc/processor-diagram.png)
+
+This repository contains the Verilog design source and simulation files for a 32-bit sequential RISC-V processor. For more information about this project, visit the [RISC-V Sequential Processor](https://kirbyburkejr.com/projects/risc-v-sequential-processor) page on my portfolio site.
 
 ## Features
 
-### Sequential Processing
+This design includes a five-stage datapath and two additional control units that process a selection of RISC-V instructions.
 
-This processor's sequential processing design passes a discrete instruction through each of the following five RISC stages to calculate and return a 32-bit result before processing subsequent instructions.
+### Five-Stage Datapath
+
+![Datapath diagram](https://github.com/KirbyBurkeJr/risc-v-sequential-processor/blob/main/doc/datapath-diagram.png)
+
 - Instruction Fetch (IF)
 - Instruction Decode (ID)
 - Execution (EX)
 - Memory Access (MEM)
 - Write Back (WB)
 
-### Supported RISC-V Instructions
+### Control Units
 
-This processor contains the following subset of RISC-V instructions. All arithmetic operations use signed values, and logical operations use bitwise evaluations.
+The Controller module manages memory and register read/write permissions and supports the ALU Controller module in selecting the appropriate ALU operation.
 
-**R-Type**
-- add
-- and
-- *nor*
-- or
-- *seq* (set if equal)
-- slt (set less than)
-- sub (subtract)
+### RISC-V Instruction Set Architecture
 
-*The nor and seq instructions are custom. They're not included within the standard RISC-V ISA, but are compatible with it.*
+This design supports the following 13 RISC-V instructions.
 
-**I-Type**
-- addi
-- andi
-- lw (load word)
-- ori
-- slti (set less than)
+**R-Type (7)**
+- Arithmetic: ADD & SUB
+- Logical: AND, OR, & NOR
+- Compare: SEQ & SLT
 
-**S-Type**
+**I-Type (5)**
+- ADDI
+- ANDI
+- ORI
+- SLTI
+- LW
 
-- sw (store word)
+**S-Type (1)**
+- SW
 
 ## Directories
 
@@ -50,11 +53,12 @@ This processor contains the following subset of RISC-V instructions. All arithme
 
 **src/design/**
 
-Contains all Verilog module designs.
+- Processor.v
+- 11 design files (dependencies)
 
 **src/testbench/**
 
-Contains the Processor test bench design.
+- tb_Processor.v
 
 **sim/**
 - example-tcl-output.txt
@@ -65,8 +69,8 @@ Contains the Processor test bench design.
 
 ### Cloning the Repository
 ```bash
-git clone https://github.com/kirbyburkejr/verilog-risc-v-processor.git
-cd verilog-risc-v-processor
+git clone https://github.com/KirbyBurkeJr/risc-v-sequential-processor
+cd risc-v-sequential-processor
 ```
 
 ### Running the Simulation
@@ -90,7 +94,6 @@ Tables with bit allocation for each instruction type.
 ### Tools Used
 
 - [Vivado v2023.2 (64-bit)](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/2023-2.html) for Verilog module design and waveform generation.
-- [Lucidchart](https://www.lucidchart.com/pages/) for module block designs.
 
 ## License
 This project is licensed under the [MIT License](LICENSE).
